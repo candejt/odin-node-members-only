@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join the Club</title>
+  </head>
+  <link rel="stylesheet" href="/css/styles.css">
+  <body>
+    <main class="container">
+      <h1>Join the Club!</h1>
+    <form action="/join-club" method="post">
+      <label for="passcode">Introduce Passcode:</label>
+      <input type="password" name="passcode" id="passcode" required />
+      <button type="submit">Join!</button>
+    </form>
+    <% if(locals.error) { %>
+        <p style="color: red"><%= error %></p>
+    <%}%>
+    </main>
+  </body>
+</html>

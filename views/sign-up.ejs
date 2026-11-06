@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+  </head>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <body>
+    <main class="container">
+      <h1>Sign Up</h1>
+      <form action="/sign-up" method="POST">
+        <div>
+          <label for="firstName">First Name:</label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder="first name"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="lastName">Last Name:</label>
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            placeholder="last name"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="user name"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" required />
+        </div>
+
+        <div>
+          <label for="confirmPassword">Confirm Password:</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="admin">Grant Admin privileges? (Check if yes)</label>
+          <input type="checkbox" name="admin" id="admin" />
+        </div>
+
+        <button type="submit">Sign Up</button>
+        <p><a href="/">Back to Homepage</a></p>
+      </form>
+    </main>
+  </body>
+</html>

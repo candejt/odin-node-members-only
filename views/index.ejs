@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+  </head>
+  <link rel="stylesheet" href="/css/styles.css">
+  <body>
+    <main class="container">
+      <h1>Homepage</h1>
+    <% if(locals.currentUser) { %>
+      <p>
+        Hello, <strong><%= currentUser.username %></strong> |
+        <a href="/profile">My Profile</a> |
+      </p>
+    <% } else { %>
+    <div>
+      <a href="/sign-up">Sign Up</a>
+    </div>
+    <div>
+      <a href="/log-in">Log In</a>
+    </div>
+   <% }%>
+   <h2>Message Board</h2>
+   <% if(messages && messages.length > 0) { %>
+        <ul>
+            <% messages.forEach(msg=>{ %>
+                <li class="message-card">
+                    <h3> <%= msg.title %></h3>
+                    <p><%= msg.text %></p>
+
+                    <% if(locals.currentUser && locals.currentUser.membership_status){ %>
+                      <small>Author: <strong><%= msg.author %></strong> on <%= msg.timestamp.toLocaleString() %></small>
+                    <%} else {%>
+                      <small><em>[Author and date hidden. Join the club to unlock them!]</em></small>
+                    <% } %>     
+                    
+                    <% if(locals.currentUser && locals.currentUser.admin) { %>
+                      <form action="/delete-message/<%=msg.id%>" method="post">
+                        <button type="submit" class="delete-btn">Delete Message</button>
+                      </form>
+                    <% } %>
+                </li>
+           <% }) %>           
+        </ul>
+   <% }else{ %>
+    <p>No messages published yet.</p>
+  <% } %>
+    </main>
+  </body>
+</html>

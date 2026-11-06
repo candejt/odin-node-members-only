@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+</head>
+<link rel="stylesheet" href="/css/styles.css">
+<body>
+  <main class="container">
+    <h1><%= currentUser.username %>'s Profile</h1>
+    
+    <% if(!currentUser.membership_status) { %>
+        <p><a href="/join-club">Join the Club</a></p>
+      <% } else { %>
+        <p><strong>Your are an official member!</strong></p>
+      <%} %>
+    <% if (!currentUser.admin){ %>
+      <form action="/become-admin" method="post">
+         <button type="submit">Become an Admin</button>
+      </form>
+    <% } else { %>
+      <p><strong>You are an administrator!</strong></p>
+    <% } %>
+      
+
+    <h2>My messages</h2>
+    <% if(messages && messages.length > 0) { %>
+        <ul>
+            <% messages.forEach(msg=>{ %>
+                <li class="message-card">
+                    <h3> <%= msg.title %></h3>
+                    <p><%= msg.text %></p>
+                    <small>Published: <%= msg.timestamp.toLocaleString() %></small>
+
+                    <form action="/delete-message/<%= msg.id %>" method="post" onsubmit="this.querySelector('button').disabled = true;">
+                      <button type="submit" class="delete-btn">Delete Message</button>
+                    </form>
+                </li>
+           <% }) %>           
+        </ul>
+   <% }else{ %>
+    <p>You haven't created any messages yet.</p>
+  <% } %>
+  <p><a href="/create-message">Create New Message</a></p>
+  <p><a href="/">Back to Homepage</a></p>
+  <p><a href="/log-out">Log Out</a></p>
+  </main>
+    
+</body>
+</html>
